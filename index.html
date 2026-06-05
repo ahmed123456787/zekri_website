@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zekri Dental Clinic — Africa's Largest Dental Clinic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600&family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="logo-mark.png" />
+  <link rel="stylesheet" href="style.css?v=27" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════
+       NAVIGATION
+  ═══════════════════════════════════════════════ -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="#" class="nav__logo">
+        <img src="logo.png?v=27" alt="Zekri Dental Clinic" class="nav__logo-img" />
+      </a>
+
+      <ul class="nav__links">
+        <li><a href="#about" data-i18n="nav.about">About</a></li>
+        <li><a href="#services" data-i18n="nav.services">Services</a></li>
+        <li><a href="#team" data-i18n="nav.team">Our Team</a></li>
+        <li><a href="#gallery" data-i18n="nav.gallery">Gallery</a></li>
+        <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+
+      <div class="nav__actions">
+        <!-- Language switcher -->
+        <div class="lang-switch" id="langSwitch">
+          <button class="lang-switch__btn" id="langBtn" aria-label="Language">
+            <span class="lang-switch__globe">🌐</span>
+            <span class="lang-switch__current" id="langCurrent">EN</span>
+            <span class="lang-switch__chev">▾</span>
+          </button>
+          <ul class="lang-switch__menu" id="langMenu">
+            <li><button data-lang="en"><span>🇬🇧</span> English</button></li>
+            <li><button data-lang="fr"><span>🇫🇷</span> Français</button></li>
+            <li><button data-lang="ar"><span>🇩🇿</span> العربية</button></li>
+          </ul>
+        </div>
+
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <span class="theme-toggle__icon">☀</span>
+        </button>
+        <a href="/appointments" class="btn btn--gold" data-i18n="nav.book">Book Appointment</a>
+        <button class="nav__burger" id="burger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div class="nav__mobile" id="mobileMenu">
+      <ul>
+        <li><a href="#about" class="mobile-link" data-i18n="nav.about">About</a></li>
+        <li><a href="#services" class="mobile-link" data-i18n="nav.services">Services</a></li>
+        <li><a href="#team" class="mobile-link" data-i18n="nav.team">Our Team</a></li>
+        <li><a href="#gallery" class="mobile-link" data-i18n="nav.gallery">Gallery</a></li>
+        <li><a href="#contact" class="mobile-link" data-i18n="nav.contact">Contact</a></li>
+        <li><a href="/appointments" class="btn btn--gold mobile-link" data-i18n="nav.book">Book Appointment</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════════════ -->
+  <section class="hero" id="home">
+    <div class="hero__bg">
+      <div class="hero__orb hero__orb--1"></div>
+      <div class="hero__orb hero__orb--2"></div>
+      <div class="hero__grid"></div>
+    </div>
+    <div class="hero__spotlight"></div>
+
+    <div class="hero__inner">
+    <div class="hero__content">
+      <div class="hero__badge reveal">
+        <span class="hero__badge-dot"></span>
+        <span data-i18n="hero.badge">Africa's Largest Dental Clinic</span>
+      </div>
+
+      <h1 class="hero__title reveal reveal--delay-1" data-i18n-html="hero.title">
+        Where Smiles<br /><em>Become</em> Art
+      </h1>
+
+      <p class="hero__sub reveal reveal--delay-2" data-i18n="hero.sub">
+        Experience world-class dental care with cutting-edge technology, in an atmosphere crafted for your ultimate comfort and confidence.
+      </p>
+
+      <div class="hero__cta reveal reveal--delay-3">
+        <a href="/appointments" class="btn btn--gold btn--lg" data-i18n="hero.cta1">Book a Consultation</a>
+        <a href="#services" class="btn btn--ghost btn--lg" data-i18n="hero.cta2">Discover Services</a>
+      </div>
+
+      <div class="hero__stats reveal reveal--delay-4">
+        <div class="stat">
+          <span class="stat__num">8+</span>
+          <span class="stat__label" data-i18n="stat.years">Years of Excellence</span>
+        </div>
+        <div class="stat__divider"></div>
+        <div class="stat">
+          <span class="stat__num">30,000+</span>
+          <span class="stat__label" data-i18n="stat.smiles">Smiles Transformed</span>
+        </div>
+        <div class="stat__divider"></div>
+        <div class="stat">
+          <span class="stat__num">24+</span>
+          <span class="stat__label" data-i18n="stat.doctors">Specialist Doctors</span>
+        </div>
+        <div class="stat__divider"></div>
+        <div class="stat">
+          <span class="stat__num">85%</span>
+          <span class="stat__label" data-i18n="stat.satisfaction">Patient Satisfaction</span>
+        </div>
+      </div>
+    </div>
+      <div class="hero__3d">
+        <canvas id="tooth3d"></canvas>
+        <span class="hero__3d-hint" data-i18n="hero.drag">✶ Drag to spin · tap to burst</span>
+      </div>
+    </div>
+
+    <div class="hero__scroll">
+      <span data-i18n="hero.scroll">Scroll to explore</span>
+      <div class="hero__scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       THE ZEKRI LEGACY — brand film
+  ═══════════════════════════════════════════════ -->
+  <section class="legacy section" id="legacy">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-eyebrow" data-i18n="legacy.eyebrow">Our Legacy</div>
+        <h2 class="section-title" data-i18n-html="legacy.title">The <em>Zekri</em> Legacy</h2>
+        <p class="section-sub" data-i18n="legacy.sub">The story behind Africa's largest dental clinic.</p>
+      </div>
+      <button class="legacy__cinema vcard reveal" type="button" data-video="videos/legacy.mp4" data-title-key="legacy.title">
+        <video class="vcard__video legacy__video" autoplay muted loop playsinline preload="auto" poster="videos/legacy-poster.jpg"><source src="videos/legacy.mp4" type="video/mp4" /></video>
+        <span class="legacy__overlay"></span>
+        <span class="vcard__play vcard__play--lg"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+        <span class="legacy__watch" data-i18n="legacy.watch">▶ Watch the Film</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       MARQUEE STRIP
+  ═══════════════════════════════════════════════ -->
+  <div class="marquee-strip">
+    <div class="marquee-track">
+      <span data-i18n="srv.implants.t">Dental Implants</span><span class="marquee-dot">✦</span>
+      <span data-i18n="srv.whitening.t">Teeth Whitening</span><span class="marquee-dot">✦</span>
+      <span data-i18n="srv.ortho.t">Orthodontics</span><span class="marquee-dot">✦</span>
+      <span data-i18n="srv.veneers.t">Veneers</span><span class="marquee-dot">✦</span>
+      <span data-i18n="srv.surgery.t">Oral Surgery</span><span class="marquee-dot">✦</span>
+      <span data-i18n="srv.smile.t">Cosmetic Dentistry</span><span class="marquee-dot">✦</span>
+      <span data-i18n="srv.pediatric.t">Pediatric Care</span><span class="marquee-dot">✦</span>
+      <span data-i18n="srv.implants.t">Dental Implants</span><span class="marquee-dot">✦</span>
+      <span data-i18n="srv.whitening.t">Teeth Whitening</span><span class="marquee-dot">✦</span>
+      <span data-i18n="srv.ortho.t">Orthodontics</span><span class="marquee-dot">✦</span>
+      <span data-i18n="srv.veneers.t">Veneers</span><span class="marquee-dot">✦</span>
+      <span data-i18n="srv.surgery.t">Oral Surgery</span><span class="marquee-dot">✦</span>
+      <span data-i18n="srv.smile.t">Cosmetic Dentistry</span><span class="marquee-dot">✦</span>
+      <span data-i18n="srv.pediatric.t">Pediatric Care</span><span class="marquee-dot">✦</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       ABOUT
+  ═══════════════════════════════════════════════ -->
+  <section class="about section" id="about">
+    <div class="container">
+      <div class="about__grid">
+        <div class="about__visual reveal">
+          <div class="about__img-wrap">
+            <div class="about__img-placeholder">
+              <img src="founder.jpg" alt="Dr. Zekri Abdennacer — Founder" class="about__img" onerror="this.style.display='none'" />
+              <div class="about__img-icon">⚕</div>
+            </div>
+            <div class="about__badge-float">
+              <span class="about__badge-num">2018</span>
+              <span class="about__badge-txt" data-i18n="about.founded">Founded</span>
+            </div>
+          </div>
+          <div class="about__accent-card">
+            <span class="about__accent-num">30,000+</span>
+            <span class="about__accent-txt" data-i18n="about.patients">Patients Trusted Us</span>
+          </div>
+        </div>
+
+        <div class="about__content reveal reveal--delay-1">
+          <div class="section-eyebrow" data-i18n="about.eyebrow">About Zekri</div>
+          <h2 class="section-title" data-i18n-html="about.title">A Legacy of <em>Trust</em> &amp; Precision</h2>
+          <p class="about__lead" data-i18n="about.lead">
+            Since 2018, Zekri Dental Clinic has grown into the largest dental clinic in Africa — and Algeria's most trusted name in comprehensive dental care.
+          </p>
+          <p class="about__body" data-i18n="about.body">
+            Our state-of-the-art facility in Ouled Yaïch, Blida spans over 2,000 m² equipped with the latest European dental technology.
+          </p>
+
+          <div class="about__pillars">
+            <div class="pillar">
+              <span class="pillar__icon">◈</span>
+              <div>
+                <strong data-i18n="about.pillar1.t">Swiss-Grade Equipment</strong>
+                <p data-i18n="about.pillar1.d">We invest in the world's finest dental instruments and imaging technology.</p>
+              </div>
+            </div>
+            <div class="pillar">
+              <span class="pillar__icon">◈</span>
+              <div>
+                <strong data-i18n="about.pillar2.t">Sterility Certified</strong>
+                <p data-i18n="about.pillar2.d">ISO-certified sterilization protocols for your absolute safety.</p>
+              </div>
+            </div>
+            <div class="pillar">
+              <span class="pillar__icon">◈</span>
+              <div>
+                <strong data-i18n="about.pillar3.t">Personalized Care</strong>
+                <p data-i18n="about.pillar3.d">Every treatment plan is crafted uniquely for you — never templated.</p>
+              </div>
+            </div>
+          </div>
+
+          <a href="#team" class="btn btn--gold" data-i18n="about.cta">Meet Our Team</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       SERVICES
+  ═══════════════════════════════════════════════ -->
+  <section class="services section" id="services">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-eyebrow" data-i18n="services.eyebrow">What We Offer</div>
+        <h2 class="section-title" data-i18n-html="services.title">Premium Dental <em>Services</em></h2>
+        <p class="section-sub" data-i18n="services.sub">Comprehensive care spanning every aspect of your oral health and aesthetic goals.</p>
+      </div>
+
+      <div class="services__grid">
+
+        <div class="service-card reveal">
+          <div class="service-card__icon"><svg viewBox="0 0 24 24"><path d="M12 5.5C10.5 3.8 8 3.3 6.3 4.6 5 5.6 4.5 7.8 5 10.5c.4 2.3 1 4.8 1.5 6.8.3 1.3 1.8 1.3 2.1-.1.3-1.4.6-3.1 1-3.6.2-.3.6-.3.8 0 .4.5.7 2.2 1 3.6.3 1.4 1.8 1.4 2.1.1.5-2 1.1-4.5 1.5-6.8.5-2.7 0-4.9-1.3-5.9C16 3.3 13.5 3.8 12 5.5Z"/></svg></div>
+          <h3 data-i18n="srv.implants.t">Dental Implants</h3>
+          <p data-i18n="srv.implants.d">Permanent, natural-looking tooth replacements using titanium implants.</p>
+          <span class="service-card__tag" data-i18n="tag.popular">Most Popular</span>
+          <a href="/appointments" class="service-card__link" data-i18n="srv.link">Learn More →</a>
+        </div>
+
+        <div class="service-card reveal reveal--delay-1">
+          <div class="service-card__icon"><svg viewBox="0 0 24 24"><path d="M9.9 15.5A2 2 0 0 0 8.5 14.1l-6.1-1.6a.5.5 0 0 1 0-1l6.1-1.6A2 2 0 0 0 9.9 8.5l1.6-6.1a.5.5 0 0 1 1 0l1.6 6.1a2 2 0 0 0 1.4 1.4l6.1 1.6a.5.5 0 0 1 0 1l-6.1 1.6a2 2 0 0 0-1.4 1.4l-1.6 6.1a.5.5 0 0 1-1 0Z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg></div>
+          <h3 data-i18n="srv.whitening.t">Teeth Whitening</h3>
+          <p data-i18n="srv.whitening.d">Professional-grade whitening treatments delivering up to 10 shades brighter.</p>
+          <a href="/appointments" class="service-card__link" data-i18n="srv.link">Learn More →</a>
+        </div>
+
+        <div class="service-card reveal reveal--delay-2">
+          <div class="service-card__icon"><svg viewBox="0 0 24 24"><path d="M6 3h12l4 6-10 13L2 9Z"/><path d="M11 3 8 9l4 13 4-13-3-6"/><path d="M2 9h20"/></svg></div>
+          <h3 data-i18n="srv.veneers.t">Porcelain Veneers</h3>
+          <p data-i18n="srv.veneers.d">Ultra-thin ceramic shells custom-crafted to create a flawless smile.</p>
+          <span class="service-card__tag" data-i18n="tag.signature">Signature</span>
+          <a href="/appointments" class="service-card__link" data-i18n="srv.link">Learn More →</a>
+        </div>
+
+        <div class="service-card reveal reveal--delay-3">
+          <div class="service-card__icon"><svg viewBox="0 0 24 24"><path d="M2 12h20"/><rect x="4" y="9" width="3.5" height="6" rx="1"/><rect x="10.25" y="9" width="3.5" height="6" rx="1"/><rect x="16.5" y="9" width="3.5" height="6" rx="1"/></svg></div>
+          <h3 data-i18n="srv.ortho.t">Orthodontics</h3>
+          <p data-i18n="srv.ortho.d">Traditional braces and invisible aligners for perfectly aligned teeth.</p>
+          <a href="/appointments" class="service-card__link" data-i18n="srv.link">Learn More →</a>
+        </div>
+
+        <div class="service-card reveal reveal--delay-1">
+          <div class="service-card__icon"><svg viewBox="0 0 24 24"><path d="M3 21 13 11"/><path d="M13 11 21 3 15.5 7.5Z"/><path d="m13.5 13.5 2 2"/></svg></div>
+          <h3 data-i18n="srv.surgery.t">Oral Surgery</h3>
+          <p data-i18n="srv.surgery.d">Complex extractions, bone grafting and jaw surgery by certified surgeons.</p>
+          <a href="/appointments" class="service-card__link" data-i18n="srv.link">Learn More →</a>
+        </div>
+
+        <div class="service-card reveal reveal--delay-2">
+          <div class="service-card__icon"><svg viewBox="0 0 24 24"><path d="M9 12h.01"/><path d="M15 12h.01"/><path d="M10 16c.5.3 1.2.5 2 .5s1.5-.2 2-.5"/><path d="M19 6.3a9 9 0 0 1 1.8 3.9 2 2 0 0 1 0 3.6 9 9 0 0 1-17.6 0 2 2 0 0 1 0-3.6A9 9 0 0 1 12 3"/></svg></div>
+          <h3 data-i18n="srv.pediatric.t">Pediatric Dentistry</h3>
+          <p data-i18n="srv.pediatric.d">Gentle, child-friendly dental care in a warm environment.</p>
+          <a href="/appointments" class="service-card__link" data-i18n="srv.link">Learn More →</a>
+        </div>
+
+        <div class="service-card reveal reveal--delay-3">
+          <div class="service-card__icon"><svg viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.7 9a1 1 0 0 1-.7 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.2-2.7a1.2 1.2 0 0 1 1.5 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1Z"/><path d="m9 12 2 2 4-4"/></svg></div>
+          <h3 data-i18n="srv.preventive.t">Preventive Care</h3>
+          <p data-i18n="srv.preventive.d">Regular cleanings, X-rays and screenings to catch problems early.</p>
+          <a href="/appointments" class="service-card__link" data-i18n="srv.link">Learn More →</a>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-card__icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" x2="9.01" y1="9" y2="9"/><line x1="15" x2="15.01" y1="9" y2="9"/></svg></div>
+          <h3 data-i18n="srv.smile.t">Smile Design</h3>
+          <p data-i18n="srv.smile.d">Full digital smile design — see your perfect smile before treatment begins.</p>
+          <span class="service-card__tag" data-i18n="tag.new">New</span>
+          <a href="/appointments" class="service-card__link" data-i18n="srv.link">Learn More →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       EXPERIENCE BANNER
+  ═══════════════════════════════════════════════ -->
+  <section class="experience-banner">
+    <div class="container">
+      <div class="experience-banner__inner reveal">
+        <div class="experience-banner__text">
+          <h2 data-i18n-html="exp.title">A Clinic That Redefines <em>Comfort</em></h2>
+          <p data-i18n="exp.body">From the moment you walk in, you are welcomed into an atmosphere of luxury, calm, and care.</p>
+          <a href="/appointments" class="btn btn--gold" data-i18n="exp.cta">Experience It Yourself</a>
+        </div>
+        <div class="experience-banner__features">
+          <div class="exp-feat">
+            <span class="exp-feat__icon"><svg viewBox="0 0 24 24"><path d="M20 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3"/><path d="M2 11v3a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-3a2 2 0 0 0-4 0v1H6v-1a2 2 0 0 0-4 0Z"/><path d="M4 18v2"/><path d="M20 18v2"/></svg></span>
+            <span data-i18n="exp.f1">Luxury Waiting Lounge</span>
+          </div>
+          <div class="exp-feat">
+            <span class="exp-feat__icon"><svg viewBox="0 0 24 24"><path d="M12 20h.01"/><path d="M2 8.82a15 15 0 0 1 20 0"/><path d="M5 12.859a10 10 0 0 1 14 0"/><path d="M8.5 16.429a5 5 0 0 1 7 0"/></svg></span>
+            <span data-i18n="exp.f2">Free High-Speed Wi-Fi</span>
+          </div>
+          <div class="exp-feat">
+            <span class="exp-feat__icon"><svg viewBox="0 0 24 24"><path d="M10 2v2"/><path d="M14 2v2"/><path d="M6 2v2"/><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"/></svg></span>
+            <span data-i18n="exp.f3">Complimentary Refreshments</span>
+          </div>
+          <div class="exp-feat">
+            <span class="exp-feat__icon"><svg viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 17V7h4a3 3 0 0 1 0 6H9"/></svg></span>
+            <span data-i18n="exp.f4">Private Parking</span>
+          </div>
+          <div class="exp-feat">
+            <span class="exp-feat__icon"><svg viewBox="0 0 24 24"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg></span>
+            <span data-i18n="exp.f5">Digital Treatment Preview</span>
+          </div>
+          <div class="exp-feat">
+            <span class="exp-feat__icon"><svg viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+            <span data-i18n="exp.f6">100% Confidential</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       TEAM
+  ═══════════════════════════════════════════════ -->
+  <section class="team section" id="team">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-eyebrow" data-i18n="team.eyebrow">The Experts</div>
+        <h2 class="section-title" data-i18n-html="team.title">Meet Our <em>Specialists</em></h2>
+        <p class="section-sub" data-i18n="team.sub">Our doctors are trained at the world's leading institutions.</p>
+      </div>
+
+      <!-- Founder — the boss -->
+      <div class="team-lead reveal">
+        <div class="team-lead__photo">
+          <img src="founder.jpg?v=27" alt="Dr. Zekri Abdennacer" onerror="this.style.display='none'" />
+        </div>
+        <div class="team-lead__info">
+          <span class="team-lead__badge" data-i18n="team.lead.badge">Founder</span>
+          <h3 data-i18n="team.d1.n">Dr. Zekri Abdennacer</h3>
+          <span class="team-lead__role" data-i18n="team.lead.role">Chief Implantologist &amp; Medical Director</span>
+          <p class="team-lead__bio" data-i18n="team.lead.bio">Founder of the largest dental clinic in Africa, personally leading a team of 24+ specialists dedicated to world-class, comfortable care.</p>
+        </div>
+      </div>
+
+      <!-- The team, with real photos -->
+      <div class="team-row reveal">
+
+        <div class="team-card">
+          <div class="team-card__photo">
+            <img src="team/charaf-el-din.jpg?v=27" alt="Dr. Charaf El Din" class="team-card__img" onerror="this.style.display='none'" />
+            <div class="team-card__avatar">CD</div>
+          </div>
+          <div class="team-card__info">
+            <h3>Dr. Charaf El Din</h3>
+            <span class="team-card__role" data-i18n="spec.dentist">Dentist</span>
+          </div>
+        </div>
+
+        <div class="team-card">
+          <div class="team-card__photo">
+            <img src="team/cherif.jpg?v=27" alt="Dr. Cherif" class="team-card__img" onerror="this.style.display='none'" />
+            <div class="team-card__avatar">CH</div>
+          </div>
+          <div class="team-card__info">
+            <h3>Dr. Cherif</h3>
+            <span class="team-card__role" data-i18n="spec.dentist">Dentist</span>
+          </div>
+        </div>
+
+        <div class="team-card">
+          <div class="team-card__photo">
+            <img src="team/omar.jpg?v=27" alt="Dr. Omar" class="team-card__img" onerror="this.style.display='none'" />
+            <div class="team-card__avatar">OM</div>
+          </div>
+          <div class="team-card__info">
+            <h3>Dr. Omar</h3>
+            <span class="team-card__role" data-i18n="spec.dentist">Dentist</span>
+          </div>
+        </div>
+
+        <div class="team-card">
+          <div class="team-card__photo">
+            <img src="team/oussama.jpg?v=27" alt="Dr. Oussama" class="team-card__img" onerror="this.style.display='none'" />
+            <div class="team-card__avatar">OU</div>
+          </div>
+          <div class="team-card__info">
+            <h3>Dr. Oussama</h3>
+            <span class="team-card__role" data-i18n="spec.dentist">Dentist</span>
+          </div>
+        </div>
+
+        <div class="team-card">
+          <div class="team-card__photo">
+            <img src="team/souhil.jpg?v=27" alt="Dr. Souhil" class="team-card__img" onerror="this.style.display='none'" />
+            <div class="team-card__avatar">SO</div>
+          </div>
+          <div class="team-card__info">
+            <h3>Dr. Souhil</h3>
+            <span class="team-card__role" data-i18n="spec.dentist">Dentist</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="team__more reveal">
+        <div class="team__more-text">
+          <span class="team__more-num">24+</span>
+          <div>
+            <strong data-i18n="team.count">Specialist Doctors</strong>
+            <p data-i18n="team.more">Across every dental discipline — implantology, orthodontics, surgery, pediatrics and more.</p>
+          </div>
+        </div>
+        <a href="/doctors" class="btn btn--gold" data-i18n="team.cta">View All Specialists →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       GALLERY
+  ═══════════════════════════════════════════════ -->
+  <section class="gallery section" id="gallery">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-eyebrow" data-i18n="gallery.eyebrow">Transformations</div>
+        <h2 class="section-title" data-i18n-html="gallery.title">Real Results, <em>Real Smiles</em></h2>
+        <p class="section-sub" data-i18n="gallery.sub">A selection of smile transformations.</p>
+      </div>
+
+      <div class="vgallery reveal">
+
+        <!-- FEATURED — the standout case (hero treatment) -->
+        <button class="vcard vcard--featured" type="button" data-video="videos/case1.mp4" data-title-key="gallery.feat.title">
+          <div class="vcard__media vgrad--1">
+            <video class="vcard__video" muted loop playsinline preload="none"><source src="videos/case1.mp4" type="video/mp4" /></video>
+            <span class="vcard__play vcard__play--lg"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+          </div>
+          <div class="vcard__feat-text">
+            <span class="vcard__feat-eyebrow" data-i18n="gallery.feat.eyebrow">Featured Case</span>
+            <span class="vcard__feat-title" data-i18n="gallery.feat.title">The Hardest Case in the World</span>
+            <span class="vcard__feat-cta" data-i18n="gallery.feat.watch">▶ Watch the Story</span>
+          </div>
+        </button>
+
+        <!-- 5 clean play-only portrait reels -->
+        <div class="vreels">
+          <button class="vcard" type="button" data-video="videos/case2.mp4" data-title-key="gallery.case">
+            <div class="vcard__media vgrad--2">
+              <video class="vcard__video" muted loop playsinline preload="none"><source src="videos/case2.mp4" type="video/mp4" /></video>
+              <span class="vcard__play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            </div>
+          </button>
+
+          <button class="vcard" type="button" data-video="videos/case3.mp4" data-title-key="gallery.case">
+            <div class="vcard__media vgrad--3">
+              <video class="vcard__video" muted loop playsinline preload="none"><source src="videos/case3.mp4" type="video/mp4" /></video>
+              <span class="vcard__play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            </div>
+          </button>
+
+          <button class="vcard" type="button" data-video="videos/case4.mp4" data-title-key="gallery.case">
+            <div class="vcard__media vgrad--4">
+              <video class="vcard__video" muted loop playsinline preload="none"><source src="videos/case4.mp4" type="video/mp4" /></video>
+              <span class="vcard__play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            </div>
+          </button>
+
+          <button class="vcard" type="button" data-video="videos/case5.mp4" data-title-key="gallery.case">
+            <div class="vcard__media vgrad--5">
+              <video class="vcard__video" muted loop playsinline preload="none"><source src="videos/case5.mp4" type="video/mp4" /></video>
+              <span class="vcard__play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            </div>
+          </button>
+
+          <button class="vcard" type="button" data-video="videos/case6.mp4" data-title-key="gallery.case">
+            <div class="vcard__media vgrad--6">
+              <video class="vcard__video" muted loop playsinline preload="none"><source src="videos/case6.mp4" type="video/mp4" /></video>
+              <span class="vcard__play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            </div>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  
+
+  <!-- ═══════════════════════════════════════════════
+       CONTACT
+  ═══════════════════════════════════════════════ -->
+  <section class="contact section" id="contact">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-eyebrow" data-i18n="contact.eyebrow">Find Us</div>
+        <h2 class="section-title" data-i18n-html="contact.title">Visit <em>Zekri</em> Clinic</h2>
+      </div>
+
+      <div class="contact__grid">
+        <div class="contact-info reveal">
+          <div class="contact-item">
+            <span class="contact-item__icon">📍</span>
+            <div>
+              <strong data-i18n="contact.address.t">Address</strong>
+              <p data-i18n-html="contact.address.d">Ouled Yaïch, Blida — Algeria</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="contact-item__icon">📞</span>
+            <div>
+              <strong data-i18n="contact.phone.t">Phone</strong>
+              <p class="contact-phones">
+                <a href="tel:020509162">020 50 91 62</a><a href="tel:020509156">020 50 91 56</a>
+                <a href="tel:020509442">020 50 94 42</a><a href="tel:020509576">020 50 95 76</a>
+              </p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="contact-item__icon">🕐</span>
+            <div>
+              <strong data-i18n="contact.hours.t">Hours</strong>
+              <p data-i18n-html="contact.hours.d">Saturday – Thursday: 8AM – 8PM</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-map reveal reveal--delay-1">
+          <iframe
+            class="contact-map__frame"
+            src="https://maps.google.com/maps?q=%D8%B9%D9%8A%D8%A7%D8%AF%D8%A9%20%D8%B2%D9%83%D8%B1%D9%8A%20%D9%84%D8%B7%D8%A8%20%D8%A7%D9%84%D8%A7%D8%B3%D9%86%D8%A7%D9%86%20%D8%A3%D9%88%D9%84%D8%A7%D8%AF%20%D9%8A%D8%B9%D9%8A%D8%B4%20%D8%A7%D9%84%D8%A8%D9%84%D9%8A%D8%AF%D8%A9&output=embed&z=15"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen
+            title="Zekri Dental Clinic — Google Maps"></iframe>
+          <a href="https://share.google/34iK57y8YLto9mi32" target="_blank" rel="noopener" class="btn btn--gold contact-map__btn" data-i18n="contact.directions">Get Directions</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <a href="#" class="nav__logo">
+            <img src="logo.png?v=27" alt="Zekri Dental Clinic" class="nav__logo-img" />
+          </a>
+          <p data-i18n="footer.tagline">The largest dental clinic in Africa and Algeria — your trusted destination for comprehensive dental excellence.</p>
+          <div class="footer__social">
+            <a href="https://www.facebook.com/cabinetdentairezekri/" target="_blank" rel="noopener" aria-label="Facebook">f</a>
+            <a href="https://www.instagram.com/zekri_dental_clinic/" target="_blank" rel="noopener" aria-label="Instagram">in</a>
+            <a href="#" aria-label="WhatsApp">w</a>
+          </div>
+        </div>
+
+        <div class="footer__links">
+          <div class="footer__col">
+            <h4 data-i18n="footer.services">Services</h4>
+            <ul>
+              <li><a href="#services" data-i18n="srv.implants.t">Dental Implants</a></li>
+              <li><a href="#services" data-i18n="srv.whitening.t">Teeth Whitening</a></li>
+              <li><a href="#services" data-i18n="srv.veneers.t">Porcelain Veneers</a></li>
+              <li><a href="#services" data-i18n="srv.ortho.t">Orthodontics</a></li>
+              <li><a href="#services" data-i18n="srv.smile.t">Smile Design</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4 data-i18n="footer.clinic">Clinic</h4>
+            <ul>
+              <li><a href="#about" data-i18n="footer.about">About Us</a></li>
+              <li><a href="#team" data-i18n="nav.team">Our Team</a></li>
+              <li><a href="#gallery" data-i18n="nav.gallery">Gallery</a></li>
+              <li><a href="/appointments" data-i18n="nav.book">Book Appointment</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4 data-i18n="footer.contact">Contact</h4>
+            <ul>
+              <li><a href="tel:020509162">020 50 91 62</a></li>
+              <li><a href="tel:020509442">020 50 94 42</a></li>
+              <li><a href="https://share.google/34iK57y8YLto9mi32" target="_blank" rel="noopener" data-i18n="contact.directions">Get Directions</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p data-i18n="footer.copyright">© 2026 Zekri Dental Clinic. All rights reserved.</p>
+        <div class="footer__bottom-links">
+          <a href="#" data-i18n="footer.privacy">Privacy Policy</a>
+          <a href="#" data-i18n="footer.terms">Terms of Service</a>
+        </div>
+        <p class="footer__credit"><span data-i18n="footer.credit">Conception &amp; Design</span> <a href="https://www.thrivedoc.co/" target="_blank" rel="noopener">ThriveDoc</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="translations.js?v=27"></script>
+  <script src="script.js?v=27"></script>
+  <script src="js/three.min.js?v=27"></script>
+  <script src="hero3d.js?v=27"></script>
+</body>
+</html>

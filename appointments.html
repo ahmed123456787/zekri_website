@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book an Appointment — Zekri Dental Clinic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600&family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="logo-mark.png" />
+  <link rel="stylesheet" href="style.css?v=27" />
+</head>
+<body>
+
+  <!-- ═══════════════ NAVIGATION ═══════════════ -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="/" class="nav__logo">
+        <img src="logo.png?v=27" alt="Zekri Dental Clinic" class="nav__logo-img" />
+      </a>
+
+      <ul class="nav__links">
+        <li><a href="/#about" data-i18n="nav.about">About</a></li>
+        <li><a href="/#services" data-i18n="nav.services">Services</a></li>
+        <li><a href="/doctors" data-i18n="nav.team">Our Team</a></li>
+        <li><a href="/#gallery" data-i18n="nav.gallery">Gallery</a></li>
+        <li><a href="/#contact" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+
+      <div class="nav__actions">
+        <div class="lang-switch" id="langSwitch">
+          <button class="lang-switch__btn" id="langBtn" aria-label="Language">
+            <span class="lang-switch__globe">🌐</span>
+            <span class="lang-switch__current" id="langCurrent">EN</span>
+            <span class="lang-switch__chev">▾</span>
+          </button>
+          <ul class="lang-switch__menu" id="langMenu">
+            <li><button data-lang="en"><span>🇬🇧</span> English</button></li>
+            <li><button data-lang="fr"><span>🇫🇷</span> Français</button></li>
+            <li><button data-lang="ar"><span>🇩🇿</span> العربية</button></li>
+          </ul>
+        </div>
+
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <span class="theme-toggle__icon">☀</span>
+        </button>
+        <a href="#appt-form" class="btn btn--gold" data-i18n="nav.book">Book Appointment</a>
+        <button class="nav__burger" id="burger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="nav__mobile" id="mobileMenu">
+      <ul>
+        <li><a href="/#about" class="mobile-link" data-i18n="nav.about">About</a></li>
+        <li><a href="/#services" class="mobile-link" data-i18n="nav.services">Services</a></li>
+        <li><a href="/doctors" class="mobile-link" data-i18n="nav.team">Our Team</a></li>
+        <li><a href="/#gallery" class="mobile-link" data-i18n="nav.gallery">Gallery</a></li>
+        <li><a href="/#contact" class="mobile-link" data-i18n="nav.contact">Contact</a></li>
+        <li><a href="#appt-form" class="btn btn--gold mobile-link" data-i18n="nav.book">Book Appointment</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ═══════════════ HERO ═══════════════ -->
+  <header class="appt-hero">
+    <div class="hero__bg">
+      <div class="hero__orb hero__orb--1"></div>
+      <div class="hero__grid"></div>
+    </div>
+    <div class="container appt-hero__inner">
+      <div class="appt-hero__head reveal">
+        <a href="/" class="docs-hero__back" data-i18n="docs.back">← Back to Home</a>
+        <div class="appt-hero__eyebrow-row">
+          <span class="section-eyebrow" data-i18n="appt.eyebrow">Appointments 2026</span>
+          <span class="appt-openpill" data-i18n="appt.open">Registrations Open</span>
+        </div>
+        <h1 class="appt-hero__title" data-i18n="appt.title">Book Your Appointment</h1>
+        <p class="appt-hero__intro" data-i18n="appt.intro">Registrations for 2026 are now open. Complete the form below to request your spot at the largest dental clinic in Africa — our coordinators will contact you to confirm.</p>
+        <a href="#appt-form" class="btn btn--gold btn--lg" data-i18n="nav.book">Book Appointment</a>
+      </div>
+
+      <div class="appt-poster reveal reveal--delay-1">
+        <img src="team-poster.jpg?v=27" alt="Zekri Dental Clinic — Appointments 2026 &amp; Our Specialist Team" />
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════════════ APPOINTMENT FORM ═══════════════ -->
+  <main class="appt-main section" id="appt-form">
+    <div class="container">
+      <div class="appt-form-card reveal">
+        <form class="booking__form" id="bookingForm" onsubmit="handleBooking(event)">
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname" data-i18n="form.fname">First Name</label>
+              <input type="text" id="fname" placeholder="Ahmed" data-i18n-ph="form.fname" required />
+            </div>
+            <div class="form-group">
+              <label for="lname" data-i18n="form.lname">Last Name</label>
+              <input type="text" id="lname" placeholder="Benali" data-i18n-ph="form.lname" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="age" data-i18n="form.age">Age</label>
+              <input type="number" id="age" min="1" max="120" placeholder="30" required />
+            </div>
+            <div class="form-group">
+              <label for="phone" data-i18n="form.phone">Phone Number</label>
+              <input type="tel" id="phone" placeholder="+213 XX XX XX XX" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="country" data-i18n="form.country">Country</label>
+              <input type="text" id="country" value="Algeria" required />
+            </div>
+            <div class="form-group">
+              <label for="wilaya" data-i18n="form.wilaya">Wilaya / Province</label>
+              <input type="text" id="wilaya" placeholder="e.g. Blida" data-i18n-ph="form.wilaya.ph" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="problem" data-i18n="form.problem">Treatment Needed</label>
+            <select id="problem" required>
+              <option value="" disabled selected data-i18n="form.problem.ph">Select your treatment…</option>
+              <option value="zirconia" data-i18n="form.cat.zirconia">Zirconium Crowns or Dental Implants</option>
+              <option value="fillings" data-i18n="form.cat.fillings">Fillings & Dental Treatment</option>
+              <option value="ortho" data-i18n="form.cat.ortho">Orthodontics (ODF)</option>
+              <option value="whitening" data-i18n="form.cat.whitening">Teeth Whitening</option>
+            </select>
+          </div>
+
+          <!-- Shown only when Zirconium / Implants is selected -->
+          <div class="appt-conditional" id="zirconiaBlock" hidden>
+            <div class="appt-price" data-i18n="form.zircprice">Zirconium crowns — 43,000 DZD</div>
+            <div class="form-group">
+              <label for="treattype" data-i18n="form.treattype">Type of Restoration</label>
+              <select id="treattype">
+                <option value="" disabled selected data-i18n="form.tt.ph">Select restoration type…</option>
+                <option data-i18n="form.tt.noimplant">Crowns without implants</option>
+                <option data-i18n="form.tt.someimplant">Crowns with some implants</option>
+                <option data-i18n="form.tt.fullimplant">Full implantation</option>
+              </select>
+            </div>
+            <div class="appt-notice appt-notice--sm" data-i18n="form.ceramic">⚠️ Ceramic crowns are not available this year.</div>
+          </div>
+
+          <div class="form-group">
+            <label for="why" data-i18n="form.why">Why Zekri Dental Clinic specifically?</label>
+            <textarea id="why" rows="3" placeholder="Tell us briefly why you chose us…" data-i18n-ph="form.why.ph"></textarea>
+          </div>
+
+          <div class="appt-notice" data-i18n="form.notice">⚠️ Priority is based on your dental case — not on how quickly you register.</div>
+
+          <label class="appt-check">
+            <input type="checkbox" id="terms" required />
+            <span data-i18n="form.terms">I have read and agree to the booking terms.</span>
+          </label>
+
+          <button type="submit" class="btn btn--gold btn--full" data-i18n="form.register">Register My Appointment →</button>
+
+          <div class="form-success" id="formSuccess" data-i18n="form.success">
+            ✓ Thank you! We will contact you within 24 hours.
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <!-- ═══════════════ FOOTER ═══════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <a href="/" class="nav__logo">
+            <img src="logo.png?v=27" alt="Zekri Dental Clinic" class="nav__logo-img" />
+          </a>
+          <p data-i18n="footer.tagline">The largest dental clinic in Africa and Algeria — your trusted destination for comprehensive dental excellence.</p>
+          <div class="footer__social">
+            <a href="https://www.facebook.com/cabinetdentairezekri/" target="_blank" rel="noopener" aria-label="Facebook">f</a>
+            <a href="https://www.instagram.com/zekri_dental_clinic/" target="_blank" rel="noopener" aria-label="Instagram">in</a>
+            <a href="#" aria-label="WhatsApp">w</a>
+          </div>
+        </div>
+
+        <div class="footer__links">
+          <div class="footer__col">
+            <h4 data-i18n="footer.services">Services</h4>
+            <ul>
+              <li><a href="/#services" data-i18n="srv.implants.t">Dental Implants</a></li>
+              <li><a href="/#services" data-i18n="srv.whitening.t">Teeth Whitening</a></li>
+              <li><a href="/#services" data-i18n="srv.veneers.t">Porcelain Veneers</a></li>
+              <li><a href="/#services" data-i18n="srv.ortho.t">Orthodontics</a></li>
+              <li><a href="/#services" data-i18n="srv.smile.t">Smile Design</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4 data-i18n="footer.clinic">Clinic</h4>
+            <ul>
+              <li><a href="/#about" data-i18n="footer.about">About Us</a></li>
+              <li><a href="/doctors" data-i18n="nav.team">Our Team</a></li>
+              <li><a href="/#gallery" data-i18n="nav.gallery">Gallery</a></li>
+              <li><a href="/appointments" data-i18n="nav.book">Book Appointment</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4 data-i18n="footer.contact">Contact</h4>
+            <ul>
+              <li><a href="tel:020509162">020 50 91 62</a></li>
+              <li><a href="tel:020509442">020 50 94 42</a></li>
+              <li><a href="https://share.google/34iK57y8YLto9mi32" target="_blank" rel="noopener" data-i18n="contact.directions">Get Directions</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p data-i18n="footer.copyright">© 2026 Zekri Dental Clinic. All rights reserved. Africa's Largest Dental Clinic.</p>
+        <div class="footer__bottom-links">
+          <a href="#" data-i18n="footer.privacy">Privacy Policy</a>
+          <a href="#" data-i18n="footer.terms">Terms of Service</a>
+        </div>
+        <p class="footer__credit"><span data-i18n="footer.credit">Conception &amp; Design</span> <a href="https://www.thrivedoc.co/" target="_blank" rel="noopener">ThriveDoc</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="translations.js?v=27"></script>
+  <script src="script.js?v=27"></script>
+</body>
+</html>

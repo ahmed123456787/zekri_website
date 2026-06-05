@@ -1,0 +1,13 @@
+# Clean URLs for Zekri Dental (Apache / cPanel hosting)
+# Serves /appointments from appointments.html, /doctors from doctors.html, etc.
+
+RewriteEngine On
+
+# 1) If the clean URL maps to a real .html file, serve it (URL stays clean)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^(.+?)/?$ $1.html [L]
+
+# 2) Redirect any direct .html request to the clean URL (301)
+RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
+RewriteRule ^ /%1 [R=301,L]
