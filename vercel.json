@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/appointments", "destination": "/appointments.html" },
+    { "source": "/doctors", "destination": "/doctors.html" }
+  ]
+}
