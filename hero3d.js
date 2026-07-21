@@ -1,6 +1,7 @@
 /* ═══════════════════════════════════════════════
-   HERO — interactive gold particle orb (Three.js)
-   Drag to spin (momentum) · hover/finger scatters · tap to burst · gyro
+   HERO — interactive 3D gold medallion (Three.js r128)
+   The Zekri logo embossed on a spinning gold coin.
+   Drag to spin (momentum) · tap to flip · gyro tilt on mobile
 ═══════════════════════════════════════════════ */
 (function () {
   const canvas = document.getElementById('tooth3d');
@@ -11,56 +12,71 @@
   const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
   renderer.setSize(W, H, false);
+  if ('outputEncoding' in renderer) renderer.outputEncoding = THREE.sRGBEncoding;
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(42, W / H, 0.1, 100);
   camera.position.set(0, 0, 5);
 
-  function makeSprite() {
-    const c = document.createElement('canvas'); c.width = c.height = 64;
-    const x = c.getContext('2d');
-    const g = x.createRadialGradient(32, 32, 0, 32, 32, 32);
-    g.addColorStop(0, 'rgba(255,246,216,1)');
-    g.addColorStop(0.4, 'rgba(232,201,122,0.95)');
-    g.addColorStop(1, 'rgba(201,168,76,0)');
-    x.fillStyle = g; x.fillRect(0, 0, 64, 64);
-    return new THREE.CanvasTexture(c);
-  }
+  // ── Lighting (gives the gold its moving shine) ──
+  scene.add(new THREE.AmbientLight(0xffffff, 0.55));
+  const key = new THREE.DirectionalLight(0xffffff, 0.95); key.position.set(2, 3, 4); scene.add(key);
+  const fill = new THREE.DirectionalLight(0xC9A84C, 0.45); fill.position.set(-3, -1, 2); scene.add(fill);
+  const glint = new THREE.PointLight(0xFFE8B0, 0.7, 20); glint.position.set(0, 0.5, 4); scene.add(glint);
 
-  const isMobile = Math.min(W, H) < 380 || /Mobi|Android/i.test(navigator.userAgent || '');
-  const N = isMobile ? 2400 : 3800;
-  const R = 1.7;
-  const pos = new Float32Array(N * 3);
-  const home = new Float32Array(N * 3);
-  const dir = new Float32Array(N * 3);
-  const GA = Math.PI * (3 - Math.sqrt(5));
-  for (let i = 0; i < N; i++) {
-    const tt = N > 1 ? i / (N - 1) : 0;
-    const y = 1 - 2 * tt;
-    const rr = Math.sqrt(Math.max(0, 1 - y * y));
-    const a = GA * i;
-    const x = Math.cos(a) * rr, z = Math.sin(a) * rr;
-    const i3 = i * 3;
-    home[i3] = x * R; home[i3 + 1] = y * R; home[i3 + 2] = z * R;
-    pos[i3] = home[i3]; pos[i3 + 1] = home[i3 + 1]; pos[i3 + 2] = home[i3 + 2];
-    dir[i3] = x; dir[i3 + 1] = y; dir[i3 + 2] = z;
-  }
+  // ── The coin ──
+  const R = 1.6, THICK = 0.32, EPS = 0.02;
+  const coin = new THREE.Group();
+  scene.add(coin);
 
-  const geo = new THREE.BufferGeometry();
-  geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-  const mat = new THREE.PointsMaterial({
-    size: isMobile ? 0.08 : 0.062, map: makeSprite(), color: 0xffffff,
-    transparent: true, depthWrite: false, blending: THREE.NormalBlending, sizeAttenuation: true
+  const rimMat = new THREE.MeshPhongMaterial({ color: 0xC9A84C, specular: 0xFFF0C0, shininess: 80, emissive: 0x1a1400 });
+  const faceMat = new THREE.MeshPhongMaterial({ color: 0x12110A, specular: 0x4A4636, shininess: 40, emissive: 0x0a0900 });
+  const body = new THREE.Mesh(new THREE.CylinderGeometry(R, R, THICK, 96), [rimMat, faceMat, faceMat]);
+  body.rotation.x = Math.PI / 2; // circular faces point toward the camera (±Z)
+  coin.add(body);
+
+  // ── Logo raised as true 3D relief on both faces (minted-coin emboss) ──
+  const AR = 198 / 233;                 // logo aspect (height / width) — keep proportions
+  const S = 2 * R * 0.82;               // logo width
+  const SH = S * AR;                    // logo height
+  const SEG_W = 240;                    // tessellation so displacement reads as real depth
+  const SEG_H = Math.round(SEG_W * AR);
+
+  const loader = new THREE.TextureLoader();
+  const setup = function (t) {
+    if ('encoding' in t) t.encoding = THREE.sRGBEncoding;
+    try { t.anisotropy = renderer.capabilities.getMaxAnisotropy(); } catch (e) {}
+  };
+  const colorTex = loader.load('logo-mark.png?v=29', setup);        // gold color of the mark
+  const heightTex = loader.load('logo-height.png?v=29', function (t) {
+    try { t.anisotropy = renderer.capabilities.getMaxAnisotropy(); } catch (e) {}
   });
-  const points = new THREE.Points(geo, mat);
-  scene.add(points);
+
+  // Lit gold so the relief catches the moving lights; displacement gives real depth,
+  // bump sharpens the emboss at full texture resolution; alphaTest cuts the mark out
+  // cleanly so the coin's gold shows around it.
+  const logoMat = new THREE.MeshPhongMaterial({
+    color: 0xD8B65A, emissive: 0x3A2C0A, specular: 0xFFEFC2, shininess: 110,
+    map: colorTex, alphaTest: 0.3,
+    bumpMap: heightTex, bumpScale: 0.05,
+    displacementMap: heightTex, displacementScale: 0.09
+  });
+
+  function addLogoFace(zSign) {
+    const geo = new THREE.PlaneGeometry(S, SH, SEG_W, SEG_H);
+    const mesh = new THREE.Mesh(geo, logoMat);
+    mesh.position.z = zSign * (THICK / 2 + EPS);
+    if (zSign < 0) mesh.rotation.y = Math.PI;   // relief raises outward on the back too
+    coin.add(mesh);
+  }
+  addLogoFace(1);
+  addLogoFace(-1);
 
   // ── Interaction state ──
-  const mouse = new THREE.Vector2(0, 0);
-  let hasPointer = false, dragging = false;
-  let rotY = 0, rotX = -0.12, velY = 0.0016, velX = 0;
+  let dragging = false;
+  let rotY = -0.2, rotX = -0.1, velY = 0.006, velX = 0;
   let lastX = 0, lastY = 0, downX = 0, downY = 0, downT = 0;
-  let burst = 0, gx = 0, gy = 0, t = 0;
+  let gx = 0, gy = 0;
   const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 
   function inside(cx, cy) {
@@ -68,33 +84,33 @@
     return cx >= r.left && cx <= r.right && cy >= r.top && cy <= r.bottom;
   }
   canvas.addEventListener('pointerdown', function (e) {
-    dragging = true; hasPointer = false;
+    dragging = true;
     lastX = downX = e.clientX; lastY = downY = e.clientY; downT = performance.now();
     velY = 0; velX = 0;
     if (canvas.setPointerCapture) { try { canvas.setPointerCapture(e.pointerId); } catch (x) {} }
   });
   window.addEventListener('pointermove', function (e) {
-    if (dragging) {
-      const dx = (e.clientX - lastX) * 0.01, dy = (e.clientY - lastY) * 0.01;
-      rotY += dx; rotX = clamp(rotX + dy, -1.2, 1.2);
-      velY = dx; velX = dy * 0.5;
-      lastX = e.clientX; lastY = e.clientY;
-    } else {
-      const r = canvas.getBoundingClientRect();
-      mouse.x = ((e.clientX - r.left) / r.width) * 2 - 1;
-      mouse.y = -((e.clientY - r.top) / r.height) * 2 + 1;
-      hasPointer = inside(e.clientX, e.clientY);
-    }
+    if (!dragging) return;
+    const dx = (e.clientX - lastX) * 0.01, dy = (e.clientY - lastY) * 0.01;
+    rotY += dx; rotX = clamp(rotX + dy, -0.9, 0.9);
+    velY = dx; velX = dy * 0.5;
+    lastX = e.clientX; lastY = e.clientY;
   });
   window.addEventListener('pointerup', function (e) {
     if (!dragging) return;
     dragging = false;
     const moved = Math.hypot(e.clientX - downX, e.clientY - downY);
-    if (moved < 7 && performance.now() - downT < 320 && inside(e.clientX, e.clientY)) burst = 1; // tap = burst
+    if (moved < 7 && performance.now() - downT < 320 && inside(e.clientX, e.clientY)) {
+      velY += 0.5; // tap = flip
+    }
   });
 
-  // ── Gyro ──
-  function onOrient(ev) { if (ev.gamma == null) return; gy = clamp((ev.gamma || 0) / 45, -0.6, 0.6); gx = clamp(((ev.beta || 45) - 45) / 60, -0.4, 0.4); }
+  // ── Gyro (mobile tilt) ──
+  function onOrient(ev) {
+    if (ev.gamma == null) return;
+    gy = clamp((ev.gamma || 0) / 45, -0.6, 0.6);
+    gx = clamp(((ev.beta || 45) - 45) / 60, -0.4, 0.4);
+  }
   function enableGyro() {
     try {
       if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
@@ -107,54 +123,16 @@
 
   // ── Loop ──
   const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const RAD = 1.15, RAD2 = RAD * RAD, PUSH = 1.05;
-  const _v = new THREE.Vector3(), worldP = new THREE.Vector3(), localP = new THREE.Vector3(999, 999, 999), inv = new THREE.Matrix4();
 
   function update() {
     requestAnimationFrame(update);
-    t += 0.012;
     if (!dragging) {
-      rotY += (reduce ? 0 : 0.0016) + velY;
-      rotX += velX; rotX = clamp(rotX, -1.2, 1.2);
+      rotY += (reduce ? 0 : 0.004) + velY;
+      rotX += velX; rotX = clamp(rotX, -0.9, 0.9);
       velY *= 0.95; velX *= 0.9;
     }
-    points.rotation.y = rotY + gy * 0.5;
-    points.rotation.x = rotX + gx * 0.4;
-    burst *= 0.9; if (burst < 0.002) burst = 0;
-
-    let active = false;
-    if (hasPointer && !dragging) {
-      _v.set(mouse.x, mouse.y, 0.5).unproject(camera).sub(camera.position).normalize();
-      const O = camera.position;
-      const b = 2 * (_v.x * O.x + _v.y * O.y + _v.z * O.z);
-      const c = (O.x * O.x + O.y * O.y + O.z * O.z) - R * R;
-      const disc = b * b - 4 * c;
-      if (disc >= 0) {
-        const s = (-b - Math.sqrt(disc)) / 2;
-        worldP.set(O.x + _v.x * s, O.y + _v.y * s, O.z + _v.z * s);
-        points.updateMatrixWorld();
-        inv.copy(points.matrixWorld).invert();
-        localP.copy(worldP).applyMatrix4(inv);
-        active = true;
-      }
-    }
-
-    const p = geo.attributes.position.array;
-    for (let i = 0; i < N; i++) {
-      const i3 = i * 3;
-      let push = burst * 1.3;
-      if (active) {
-        const dx = home[i3] - localP.x, dy = home[i3 + 1] - localP.y, dz = home[i3 + 2] - localP.z;
-        const d2 = dx * dx + dy * dy + dz * dz;
-        if (d2 < RAD2) { const d = Math.sqrt(d2) || 0.0001; push += (RAD - d) / RAD * PUSH; }
-      }
-      if (!reduce) push += 0.018 * Math.sin(t + i * 0.35);
-      const tx = home[i3] + dir[i3] * push, ty = home[i3 + 1] + dir[i3 + 1] * push, tz = home[i3 + 2] + dir[i3 + 2] * push;
-      p[i3] += (tx - p[i3]) * 0.15;
-      p[i3 + 1] += (ty - p[i3 + 1]) * 0.15;
-      p[i3 + 2] += (tz - p[i3 + 2]) * 0.15;
-    }
-    geo.attributes.position.needsUpdate = true;
+    coin.rotation.y = rotY + gy * 0.5;
+    coin.rotation.x = rotX + gx * 0.4;
     renderer.render(scene, camera);
   }
   update();

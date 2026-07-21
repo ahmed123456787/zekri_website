@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" data-theme="light">
+<html lang="en" dir="ltr" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -44,9 +44,6 @@
           </ul>
         </div>
 
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-          <span class="theme-toggle__icon">☀</span>
-        </button>
         <a href="/appointments" class="btn btn--gold" data-i18n="nav.book">Book Appointment</a>
         <button class="nav__burger" id="burger" aria-label="Menu">
           <span></span><span></span><span></span>
@@ -94,8 +91,7 @@
       </p>
 
       <div class="hero__cta reveal reveal--delay-3">
-        <a href="/appointments" class="btn btn--gold btn--lg" data-i18n="hero.cta1">Book a Consultation</a>
-        <a href="#services" class="btn btn--ghost btn--lg" data-i18n="hero.cta2">Discover Services</a>
+        <a href="/appointments" class="btn btn--gold hero__cta-book" data-i18n="hero.cta1">Book Appointment</a>
       </div>
 
       <div class="hero__stats reveal reveal--delay-4">
@@ -110,14 +106,14 @@
         </div>
         <div class="stat__divider"></div>
         <div class="stat">
-          <span class="stat__num">24+</span>
+          <span class="stat__num">30+</span>
           <span class="stat__label" data-i18n="stat.doctors">Specialist Doctors</span>
         </div>
         <div class="stat__divider"></div>
-        <div class="stat">
-          <span class="stat__num">85%</span>
-          <span class="stat__label" data-i18n="stat.satisfaction">Patient Satisfaction</span>
-        </div>
+        <a class="stat stat--reviews" href="https://share.google/34iK57y8YLto9mi32" target="_blank" rel="noopener">
+          <span class="stat__num">4.9<span class="stat__star">★</span></span>
+          <span class="stat__label" data-i18n="stat.reviews">Google Reviews</span>
+        </a>
       </div>
     </div>
       <div class="hero__3d">
@@ -126,10 +122,10 @@
       </div>
     </div>
 
-    <div class="hero__scroll">
-      <span data-i18n="hero.scroll">Scroll to explore</span>
+    <a href="#services" class="hero__scroll hero__scroll--link">
+      <span data-i18n="hero.cta2">Our Services</span>
       <div class="hero__scroll-line"></div>
-    </div>
+    </a>
   </section>
 
   <!-- ═══════════════════════════════════════════════
@@ -140,9 +136,9 @@
       <div class="section-header reveal">
         <div class="section-eyebrow" data-i18n="legacy.eyebrow">Our Legacy</div>
         <h2 class="section-title" data-i18n-html="legacy.title">The <em>Zekri</em> Legacy</h2>
-        <p class="section-sub" data-i18n="legacy.sub">The story behind Africa's largest dental clinic.</p>
+        <p class="section-sub" data-i18n="legacy.sub">The artistic vision of the largest dental clinic in Algeria and Africa.</p>
       </div>
-      <button class="legacy__cinema vcard reveal" type="button" data-video="videos/legacy.mp4" data-title-key="legacy.title">
+      <button class="legacy__cinema vcard reveal" type="button" data-video="videos/legacy-full.mp4" data-title-key="legacy.title">
         <video class="vcard__video legacy__video" autoplay muted loop playsinline preload="auto" poster="videos/legacy-poster.jpg"><source src="videos/legacy.mp4" type="video/mp4" /></video>
         <span class="legacy__overlay"></span>
         <span class="vcard__play vcard__play--lg"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
@@ -160,17 +156,11 @@
       <span data-i18n="srv.whitening.t">Teeth Whitening</span><span class="marquee-dot">✦</span>
       <span data-i18n="srv.ortho.t">Orthodontics</span><span class="marquee-dot">✦</span>
       <span data-i18n="srv.veneers.t">Veneers</span><span class="marquee-dot">✦</span>
-      <span data-i18n="srv.surgery.t">Oral Surgery</span><span class="marquee-dot">✦</span>
-      <span data-i18n="srv.smile.t">Cosmetic Dentistry</span><span class="marquee-dot">✦</span>
-      <span data-i18n="srv.pediatric.t">Pediatric Care</span><span class="marquee-dot">✦</span>
-      <span data-i18n="srv.implants.t">Dental Implants</span><span class="marquee-dot">✦</span>
+      <span data-i18n="srv.surgery.t">Oral Surgery</span><span class="marquee-dot">✦</span>      <span data-i18n="srv.implants.t">Dental Implants</span><span class="marquee-dot">✦</span>
       <span data-i18n="srv.whitening.t">Teeth Whitening</span><span class="marquee-dot">✦</span>
       <span data-i18n="srv.ortho.t">Orthodontics</span><span class="marquee-dot">✦</span>
       <span data-i18n="srv.veneers.t">Veneers</span><span class="marquee-dot">✦</span>
-      <span data-i18n="srv.surgery.t">Oral Surgery</span><span class="marquee-dot">✦</span>
-      <span data-i18n="srv.smile.t">Cosmetic Dentistry</span><span class="marquee-dot">✦</span>
-      <span data-i18n="srv.pediatric.t">Pediatric Care</span><span class="marquee-dot">✦</span>
-    </div>
+      <span data-i18n="srv.surgery.t">Oral Surgery</span><span class="marquee-dot">✦</span>    </div>
   </div>
 
   <!-- ═══════════════════════════════════════════════
@@ -186,7 +176,7 @@
               <div class="about__img-icon">⚕</div>
             </div>
             <div class="about__badge-float">
-              <span class="about__badge-num">2018</span>
+              <span class="about__badge-num">2017</span>
               <span class="about__badge-txt" data-i18n="about.founded">Founded</span>
             </div>
           </div>
@@ -200,10 +190,10 @@
           <div class="section-eyebrow" data-i18n="about.eyebrow">About Zekri</div>
           <h2 class="section-title" data-i18n-html="about.title">A Legacy of <em>Trust</em> &amp; Precision</h2>
           <p class="about__lead" data-i18n="about.lead">
-            Since 2018, Zekri Dental Clinic has grown into the largest dental clinic in Africa — and Algeria's most trusted name in comprehensive dental care.
+            Since 2017, Zekri Dental Clinic has grown into the largest dental clinic in Africa — and Algeria's most trusted name in comprehensive dental care.
           </p>
           <p class="about__body" data-i18n="about.body">
-            Our state-of-the-art facility in Ouled Yaïch, Blida spans over 2,000 m² equipped with the latest European dental technology.
+            Our state-of-the-art facility in Ouled Yaïch, Blida spans about 2,000 m² equipped with the latest European dental technology.
           </p>
 
           <div class="about__pillars">
@@ -218,7 +208,7 @@
               <span class="pillar__icon">◈</span>
               <div>
                 <strong data-i18n="about.pillar2.t">Sterility Certified</strong>
-                <p data-i18n="about.pillar2.d">ISO-certified sterilization protocols for your absolute safety.</p>
+                <p data-i18n="about.pillar2.d">HSE-certified sterilization protocols for your absolute safety.</p>
               </div>
             </div>
             <div class="pillar">
@@ -266,8 +256,8 @@
 
         <div class="service-card reveal reveal--delay-2">
           <div class="service-card__icon"><svg viewBox="0 0 24 24"><path d="M6 3h12l4 6-10 13L2 9Z"/><path d="M11 3 8 9l4 13 4-13-3-6"/><path d="M2 9h20"/></svg></div>
-          <h3 data-i18n="srv.veneers.t">Porcelain Veneers</h3>
-          <p data-i18n="srv.veneers.d">Ultra-thin ceramic shells custom-crafted to create a flawless smile.</p>
+          <h3 data-i18n="srv.veneers.t">Zircon</h3>
+          <p data-i18n="srv.veneers.d">Durable, natural-looking zirconia crowns and restorations engineered for lasting strength and a flawless aesthetic.</p>
           <span class="service-card__tag" data-i18n="tag.signature">Signature</span>
           <a href="/appointments" class="service-card__link" data-i18n="srv.link">Learn More →</a>
         </div>
@@ -286,13 +276,6 @@
           <a href="/appointments" class="service-card__link" data-i18n="srv.link">Learn More →</a>
         </div>
 
-        <div class="service-card reveal reveal--delay-2">
-          <div class="service-card__icon"><svg viewBox="0 0 24 24"><path d="M9 12h.01"/><path d="M15 12h.01"/><path d="M10 16c.5.3 1.2.5 2 .5s1.5-.2 2-.5"/><path d="M19 6.3a9 9 0 0 1 1.8 3.9 2 2 0 0 1 0 3.6 9 9 0 0 1-17.6 0 2 2 0 0 1 0-3.6A9 9 0 0 1 12 3"/></svg></div>
-          <h3 data-i18n="srv.pediatric.t">Pediatric Dentistry</h3>
-          <p data-i18n="srv.pediatric.d">Gentle, child-friendly dental care in a warm environment.</p>
-          <a href="/appointments" class="service-card__link" data-i18n="srv.link">Learn More →</a>
-        </div>
-
         <div class="service-card reveal reveal--delay-3">
           <div class="service-card__icon"><svg viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.7 9a1 1 0 0 1-.7 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.2-2.7a1.2 1.2 0 0 1 1.5 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1Z"/><path d="m9 12 2 2 4-4"/></svg></div>
           <h3 data-i18n="srv.preventive.t">Preventive Care</h3>
@@ -300,13 +283,6 @@
           <a href="/appointments" class="service-card__link" data-i18n="srv.link">Learn More →</a>
         </div>
 
-        <div class="service-card reveal">
-          <div class="service-card__icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" x2="9.01" y1="9" y2="9"/><line x1="15" x2="15.01" y1="9" y2="9"/></svg></div>
-          <h3 data-i18n="srv.smile.t">Smile Design</h3>
-          <p data-i18n="srv.smile.d">Full digital smile design — see your perfect smile before treatment begins.</p>
-          <span class="service-card__tag" data-i18n="tag.new">New</span>
-          <a href="/appointments" class="service-card__link" data-i18n="srv.link">Learn More →</a>
-        </div>
 
       </div>
     </div>
@@ -339,10 +315,6 @@
           <div class="exp-feat">
             <span class="exp-feat__icon"><svg viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 17V7h4a3 3 0 0 1 0 6H9"/></svg></span>
             <span data-i18n="exp.f4">Private Parking</span>
-          </div>
-          <div class="exp-feat">
-            <span class="exp-feat__icon"><svg viewBox="0 0 24 24"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg></span>
-            <span data-i18n="exp.f5">Digital Treatment Preview</span>
           </div>
           <div class="exp-feat">
             <span class="exp-feat__icon"><svg viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
@@ -439,7 +411,7 @@
 
       <div class="team__more reveal">
         <div class="team__more-text">
-          <span class="team__more-num">24+</span>
+          <span class="team__more-num">30+</span>
           <div>
             <strong data-i18n="team.count">Specialist Doctors</strong>
             <p data-i18n="team.more">Across every dental discipline — implantology, orthodontics, surgery, pediatrics and more.</p>
@@ -466,7 +438,7 @@
         <!-- FEATURED — the standout case (hero treatment) -->
         <button class="vcard vcard--featured" type="button" data-video="videos/case1.mp4" data-title-key="gallery.feat.title">
           <div class="vcard__media vgrad--1">
-            <video class="vcard__video" muted loop playsinline preload="none"><source src="videos/case1.mp4" type="video/mp4" /></video>
+            <video class="vcard__video" muted loop playsinline preload="none" poster="videos/case1-poster.jpg"><source src="videos/case1.mp4" type="video/mp4" /></video>
             <span class="vcard__play vcard__play--lg"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
           </div>
           <div class="vcard__feat-text">
@@ -480,35 +452,35 @@
         <div class="vreels">
           <button class="vcard" type="button" data-video="videos/case2.mp4" data-title-key="gallery.case">
             <div class="vcard__media vgrad--2">
-              <video class="vcard__video" muted loop playsinline preload="none"><source src="videos/case2.mp4" type="video/mp4" /></video>
+              <video class="vcard__video" muted loop playsinline preload="none" poster="videos/case2-poster.jpg"><source src="videos/case2.mp4" type="video/mp4" /></video>
               <span class="vcard__play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
             </div>
           </button>
 
           <button class="vcard" type="button" data-video="videos/case3.mp4" data-title-key="gallery.case">
             <div class="vcard__media vgrad--3">
-              <video class="vcard__video" muted loop playsinline preload="none"><source src="videos/case3.mp4" type="video/mp4" /></video>
+              <video class="vcard__video" muted loop playsinline preload="none" poster="videos/case3-poster.jpg"><source src="videos/case3.mp4" type="video/mp4" /></video>
               <span class="vcard__play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
             </div>
           </button>
 
           <button class="vcard" type="button" data-video="videos/case4.mp4" data-title-key="gallery.case">
             <div class="vcard__media vgrad--4">
-              <video class="vcard__video" muted loop playsinline preload="none"><source src="videos/case4.mp4" type="video/mp4" /></video>
+              <video class="vcard__video" muted loop playsinline preload="none" poster="videos/case4-poster.jpg"><source src="videos/case4.mp4" type="video/mp4" /></video>
               <span class="vcard__play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
             </div>
           </button>
 
           <button class="vcard" type="button" data-video="videos/case5.mp4" data-title-key="gallery.case">
             <div class="vcard__media vgrad--5">
-              <video class="vcard__video" muted loop playsinline preload="none"><source src="videos/case5.mp4" type="video/mp4" /></video>
+              <video class="vcard__video" muted loop playsinline preload="none" poster="videos/case5-poster.jpg"><source src="videos/case5.mp4" type="video/mp4" /></video>
               <span class="vcard__play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
             </div>
           </button>
 
           <button class="vcard" type="button" data-video="videos/case6.mp4" data-title-key="gallery.case">
             <div class="vcard__media vgrad--6">
-              <video class="vcard__video" muted loop playsinline preload="none"><source src="videos/case6.mp4" type="video/mp4" /></video>
+              <video class="vcard__video" muted loop playsinline preload="none" poster="videos/case6-poster.jpg"><source src="videos/case6.mp4" type="video/mp4" /></video>
               <span class="vcard__play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
             </div>
           </button>
@@ -550,6 +522,15 @@
             </div>
           </div>
           <div class="contact-item">
+            <span class="contact-item__icon">💬</span>
+            <div>
+              <strong>WhatsApp</strong>
+              <p class="contact-phones">
+                <a href="https://wa.me/213563029580" target="_blank" rel="noopener" dir="ltr">0563 02 95 80</a>
+              </p>
+            </div>
+          </div>
+          <div class="contact-item">
             <span class="contact-item__icon">🕐</span>
             <div>
               <strong data-i18n="contact.hours.t">Hours</strong>
@@ -586,7 +567,7 @@
           <div class="footer__social">
             <a href="https://www.facebook.com/cabinetdentairezekri/" target="_blank" rel="noopener" aria-label="Facebook">f</a>
             <a href="https://www.instagram.com/zekri_dental_clinic/" target="_blank" rel="noopener" aria-label="Instagram">in</a>
-            <a href="#" aria-label="WhatsApp">w</a>
+            <a href="https://wa.me/213563029580" target="_blank" rel="noopener" aria-label="WhatsApp">w</a>
           </div>
         </div>
 
@@ -596,9 +577,8 @@
             <ul>
               <li><a href="#services" data-i18n="srv.implants.t">Dental Implants</a></li>
               <li><a href="#services" data-i18n="srv.whitening.t">Teeth Whitening</a></li>
-              <li><a href="#services" data-i18n="srv.veneers.t">Porcelain Veneers</a></li>
+              <li><a href="#services" data-i18n="srv.veneers.t">Zircon</a></li>
               <li><a href="#services" data-i18n="srv.ortho.t">Orthodontics</a></li>
-              <li><a href="#services" data-i18n="srv.smile.t">Smile Design</a></li>
             </ul>
           </div>
           <div class="footer__col">
@@ -615,6 +595,7 @@
             <ul>
               <li><a href="tel:020509162">020 50 91 62</a></li>
               <li><a href="tel:020509442">020 50 94 42</a></li>
+              <li><a href="https://wa.me/213563029580" target="_blank" rel="noopener" dir="ltr">WhatsApp: 0563 02 95 80</a></li>
               <li><a href="https://share.google/34iK57y8YLto9mi32" target="_blank" rel="noopener" data-i18n="contact.directions">Get Directions</a></li>
             </ul>
           </div>

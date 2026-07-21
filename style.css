@@ -179,7 +179,14 @@ em { font-style: italic; color: var(--gold); }
 
 .hero__sub { font-size: 1.1rem; color: var(--text-2); line-height: 1.8; margin-bottom: 2.5rem; }
 
-.hero__cta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 4rem; }
+.hero__cta { display: flex; justify-content: center; margin-bottom: 4rem; }
+.hero__cta-book { justify-content: center; font-size: clamp(1rem, 3vw, 1.2rem); padding: clamp(1.1rem, 3vw, 1.5rem) clamp(2.2rem, 8vw, 3.6rem); letter-spacing: 0.08em; border-radius: 6px; animation: ctaGlow 2.6s ease-in-out infinite; }
+.hero__cta-book:hover { transform: translateY(-2px) scale(1.03); }
+@keyframes ctaGlow {
+  0%, 100% { box-shadow: 0 2px 16px rgba(201, 168, 76, 0.35); }
+  50% { box-shadow: 0 6px 36px rgba(201, 168, 76, 0.7); }
+}
+@media (prefers-reduced-motion: reduce) { .hero__cta-book { animation: none; } }
 
 .hero__stats { display: flex; align-items: center; justify-content: center; gap: 0px; flex-wrap: wrap; padding: 2rem; background: var(--bg-card); border: 1px solid var(--gold-border); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); }
 
@@ -191,9 +198,18 @@ em { font-style: italic; color: var(--gold); }
 
 .stat__divider { width: 1px; height: 40px; background: var(--border); }
 
+/* Google Reviews stat — clickable */
+.stat--reviews { text-decoration: none; cursor: pointer; border-radius: var(--radius); transition: transform var(--transition), background var(--transition); }
+.stat--reviews:hover { transform: translateY(-2px); }
+.stat--reviews:hover .stat__num,
+.stat--reviews:hover .stat__label { color: var(--gold-light); }
+.stat__star { color: var(--gold); margin-left: 0.12em; }
+
 .hero__scroll { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.75rem; color: var(--text-3); font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; }
 
 .hero__scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--gold), transparent); animation: 2s ease-in-out 0s infinite normal none running scrollLine; }
+.hero__scroll--link { text-decoration: none; cursor: pointer; transition: color var(--transition); }
+.hero__scroll--link:hover { color: var(--gold); }
 
 @keyframes scrollLine { 
   0%, 100% { opacity: 1; height: 40px; }
@@ -817,6 +833,9 @@ a[href^="tel:"] { unicode-bidi: isolate; direction: ltr; }
   .vcard--featured { grid-template-columns: 1fr; gap: 1.5rem; padding: 1.25rem; }
   .vcard--featured .vcard__media { width: 100%; }
   .vreels { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  /* hero CTA -> big, near full-width so it dominates on phones */
+  .hero__cta { width: 100%; }
+  .hero__cta-book { width: 100%; max-width: 400px; font-size: 1.2rem; padding: 1.35rem 2rem; }
   /* hero stats -> clean 2x2 */
   .hero__stats { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem 0.4rem; padding: 1.5rem 1rem; width: 100%; max-width: 430px; margin: 0 auto; }
   .stat { padding: 0.5rem; }

@@ -2,7 +2,7 @@
    INTERNATIONALIZATION (EN / FR / AR)
 ═══════════════════════════════════════════════ */
 const htmlEl = document.documentElement;
-let currentLang = localStorage.getItem('zekri-lang') || 'en';
+let currentLang = localStorage.getItem('zekri-lang') || 'ar';
 
 function applyLanguage(lang) {
   const dict = TRANSLATIONS[lang];
@@ -68,25 +68,6 @@ document.addEventListener('click', (e) => {
 
 // Apply saved language on load
 applyLanguage(currentLang);
-
-/* ═══════════════════════════════════════════════
-   THEME TOGGLE
-═══════════════════════════════════════════════ */
-const html = document.documentElement;
-const themeToggle = document.getElementById('themeToggle');
-const themeIcon = themeToggle.querySelector('.theme-toggle__icon');
-
-const savedTheme = localStorage.getItem('zekri-theme') || 'light';
-html.setAttribute('data-theme', savedTheme);
-themeIcon.textContent = savedTheme === 'dark' ? '☾' : '☀';
-
-themeToggle.addEventListener('click', () => {
-  const current = html.getAttribute('data-theme');
-  const next = current === 'light' ? 'dark' : 'light';
-  html.setAttribute('data-theme', next);
-  themeIcon.textContent = next === 'dark' ? '☾' : '☀';
-  localStorage.setItem('zekri-theme', next);
-});
 
 /* ═══════════════════════════════════════════════
    NAV SCROLL STATE
@@ -224,8 +205,8 @@ const statsObserver = new IntersectionObserver((entries) => {
       const data = [
         { target: 8, suffix: '+' },
         { target: 30000, suffix: '+' },
-        { target: 24, suffix: '+' },
-        { target: 85, suffix: '%' }
+        { target: 30, suffix: '+' }
+        /* 4th stat is the Google Reviews rating — kept static, not counted */
       ];
       numEls.forEach((el, i) => {
         if (data[i]) animateCounter(el, data[i].target, data[i].suffix);
